@@ -11,4 +11,4 @@ import scrapy
 class SinanbaspiderItem(scrapy.Item):
     # define the fields for your item here like:
     title = scrapy.Field()
-    pass
+    # pass

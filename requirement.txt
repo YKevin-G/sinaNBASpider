@@ -1,0 +1,24 @@
+notes:
+爬虫只要有url,然后定义一个parse函数，对收到的response进行解决处理。
+在类中使用 start_urls  等价于在类中  定义函数 def start_requests()
+
+
+Selector对象的用法：
+Selector(text/resposne = text(你要输入的内容)/response(你所获取的对象)).xpath("过滤条件")
+
+在爬虫所返回的数据对象httpresponse里面也包含了上述方法 xpath,
+用法：response(数据对象).xpath("过滤条件")
+
+然后这两种方法 第二种 简单一些，然后在这些函数的后面加上一个.extract(),extract_first()就可以把数据文字化提取出来了
+以上是属于 xpath 用法的，下面是.css用法的,他们两个在筛选时格式不同
+ 还可以这样用 response.css('img').xpath('@src').extract()，先用css过滤一下，然后在提取
+response.xpath('//base/@href').extract()
+response.css('base::attr(href)').extract()
+在xpath中@表示是css标签，而在css筛选时css 标签 在等号右边
+xpath主要是通过路径来提取的,然后在路径中添加@表示css标签，这里面也可以使用 参数[contains(,)]
+.css 表示起来更加灵活，主要是使用[]然后在里面添加条件，然后使用 ::attr(参数)
+
+具体用的时候再查把
+
+在提取 div里面的信息的时候,如果要指定div  的id或者class名字，操作方法
+例 response.xpath("//div[@id = ""]/a/text()").extract()(如果只要第一条的话,可以extract_first(参数：default='not-found'，找不到会显示这个))
