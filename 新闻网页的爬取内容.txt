@@ -1,0 +1,125 @@
+整个目录结构为：
+html
+\\\\head /head
+\\\\body(class = "sinacMNT_logout") /body  
+/html
+
+要爬去的内容都在body里面
+
+一下主页的主要内容出现在
+div(class = "main-content w1240") /div之间， 一直结束到right-bar标签
+首先要提取的内容 就是这个新闻所在的路径：
+
+div(class = "main-content w1240")
+\\\\div(class = "topbar") 这是广告图片/div
+
+\\\\div(class = "path-search" data-sudaclick="path_search") 
+\\\\\\\\div(class="path")
+\\\\\\\\\\\\<a class="channel-logo">图片一个e </a>
+\\\\\\\\\\\\div("class = channel-path" data-sudaclick="cnav_breadcrumbs_p") 
+\\\\\\\\\\\\\\\\<a href="连接（要的）">文字(要的)</a>
+\\\\\\\\\\\\\\\\<span class="spliter">（不要这只是一个分隔符）</span>
+\\\\\\\\\\\\\\\\<a href="连接（要的）">文字(要的)</a>
+\\\\\\\\\\\\\\\\<span class="spliter">（不要这只是一个分隔符）</span>
+\\\\\\\\\\\\\\\\<a href="连接（要的）">文字(要的)</a>
+\\\\\\\\\\\\\\\\<span class="spliter">（不要这只是一个分隔符）</span>
+\\\\\\\\\\\\\\\\(主要任务是把这个路径对应的文字与连接提取出来)
+\\\\\\\\\\\\/div
+\\\\\\\\/div
+\\\\/div
+(至此这个路径的索引结束)
+
+\\\\<h1 class="main-title">新闻标题（要的）
+\\\\</h1>
+(至此新闻主标题已经获取)
+
+\\\\div(class="top-bar-web" id = "top_bar_web")
+\\\\\\\\div(class = "second-title")这个标题是与主标题一致的
+\\\\\\\\/div
+\\\\\\\\div(class="date-source" data-sudaclick="blk_time_source")
+\\\\\\\\\\\\<span class="date">新闻发布时间戳（要的）
+\\\\\\\\\\\\<span>
+\\\\\\\\\\\\<a href="" target="_blank" class="source ent-source" data-sudaclick="content_media_p" rel="nofollow">新闻发布作者
+\\\\\\\\\\\\</a> 
+\\\\\\\\/div
+(至此新闻发布时间，发布机构已经获取)
+\\\\\\\\div(class="page-tools" data-sudaclick="blk_share")
+\\\\\\\\\\\\<span class="tool-icon tool-tool-des-fs-first">多个关于文章设置字体，分享链接的链接（无用，此处省去多个）
+\\\\\\\\\\\\</span>
+\\\\\\\\\\\\<span class="tool-icon tool-cmt">
+\\\\\\\\\\\\\\\\<a ani-hover="bounceFromTop" node-type="comment" href="javascript:;" data-sudaclick="blk_comment">
+\\\\\\\\\\\\\\\\\\\\<span class="num" node-type="comment-num" data-sudaclick="blk_comment">改新闻的评论数量（要的）
+\\\\\\\\\\\\\\\\\\\\/<span>
+\\\\\\\\\\\\\\\\</a>
+\\\\\\\\\\\\/<span>
+(至此新闻的评论数量已经获取)
+\\\\\\\\/div
+\\\\/div
+
+\\\\div(class = "article-content clearfix article-18" id= "article_content")
+\\\\\\\\div(class = "article-content-left")(这是新闻的内容的开始)
+
+\\\\\\\\\\\\div(广告)
+\\\\\\\\\\\\/div
+(这是一个广告)
+\\\\\\\\\\\\div(class = "article" id = "artibody" data-sudaclick="blk_content")(正文内容,在下面一项一项列出来)
+\\\\\\\\\\\\\\\\div(class="img_wraper")
+\\\\\\\\\\\\\\\\\\\\<img alt="" src="">（要从这两个标签内获取图片与图片的名字）
+\\\\\\\\\\\\\\\\\\\\<span class="img_descr">
+\\\\\\\\\\\\\\\\\\\\/<span>
+\\\\\\\\\\\\\\\\/div
+\\\\\\\\\\\\/div
+(至此关于新闻里面的图片和图片名字已经获取)
+\\\\\\\\\\\\p(这是新闻的文字信息，这其中可能会包含广告，先一起爬去出来，然后在对数据进行清洗)
+\\\\\\\\\\\\/p
+(此处循环多个p标签（省略不写了），获取所有的新闻文字，注意最后一个p标签作为改文章的作者，)
+(至此新闻的文字内容和新闻作者已经获取)
+\\\\\\\\\\\\div(class = "article-bottom clearfix" id="article-bottom")
+\\\\\\\\\\\\\\\\div(class="keywords" id = "keywords" data-wbkey="我要的关键字" data-sudaclick="content_keywords_p")
+\\\\\\\\\\\\\\\\\\\\label(关键词：)
+\\\\\\\\\\\\\\\\\\\\/label
+\\\\\\\\\\\\\\\\\\\\<a href="">关键词1(a标签的链接和内容都要的)
+\\\\\\\\\\\\\\\\\\\\/
+\\\\\\\\\\\\\\\\\\\\<a href="">关键词2(要的)
+\\\\\\\\\\\\\\\\\\\\/
+\\\\\\\\\\\\\\\\\\\\<a href="">关键词3(要的)
+\\\\\\\\\\\\\\\\\\\\/
+\\\\\\\\\\\\\\\\/div
+\\\\\\\\\\\\/div
+(至此新闻的关键词和关键词链接已经获取完毕)
+\\\\\\\\\\\\div(class="blk-comment" id = "wrap_bottom_comment")
+\\\\\\\\\\\\\\\\div(id="bottom_sina_comment" class="sina-comment-wrap")
+
+\\\\\\\\\\\\\\\\\\\\div(class="sina-comment-form sina-comment-top" comment-type="form" data-sudaclick="make_comment")
+\\\\\\\\\\\\\\\\\\\\\\\\div(class= "hd clearfix")
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\<span comment-type="count" href="" class=count>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<em>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<a href="链接" data-sudaclick="comment_sum_p" target="_blank">数量(这个标签内的内容和链接都要)
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<a>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<em>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<em>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<a href="链接" data-sudaclick="comment_sum_p" target="_blank">数量(这个标签内的内容和链接都要)
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<a>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<em>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<span>
+\\\\\\\\\\\\\\\\\\\\\\\\/div
+\\\\\\\\\\\\\\\\\\\\/div
+(至此参与该新闻评论的人数与评论的数量和相关评论的链接已经获取)
+\\\\\\\\\\\\\\\\\\\\div(class="sina-comment-list sina-comment-list-has-all sina-comment-list-has-not sina-comment-list-has-latest" comment-type="list" data-sudaclick="comment_content")
+\\\\\\\\\\\\\\\\\\\\\\\\div(class="latest-wrap" comment-type="hotWrap")(这之前跳过了热评模块)
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\div(action-type action-data = "type=latest" comment-type="latestMore" class="list-ft")
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<a class="more" target="_blank" href="我要这个链接！！！！">
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<em>评论总数量，获取一下吧
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<em>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<a>
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\/div
+\\\\\\\\\\\\\\\\\\\\\\\\/div
+\\\\\\\\\\\\\\\\\\\\/div
+(至此我已经把有关本新闻的所有评论所在的网页链接进行了保存)
+\\\\\\\\\\\\\\\\/div
+\\\\\\\\\\\\/div
+\\\\\\\\/div
+\\\\/div
+/div
+
+
