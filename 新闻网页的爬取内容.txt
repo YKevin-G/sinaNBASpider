@@ -39,7 +39,7 @@ div(class = "main-content w1240")
 \\\\\\\\div(class="date-source" data-sudaclick="blk_time_source")
 \\\\\\\\\\\\<span class="date">新闻发布时间戳（要的）
 \\\\\\\\\\\\<span>
-\\\\\\\\\\\\<a href="" target="_blank" class="source ent-source" data-sudaclick="content_media_p" rel="nofollow">新闻发布作者
+\\\\\\\\\\\\<a href="" target="_blank" class="source ent-source" data-sudaclick="content_media_p" rel="nofollow">新闻发布机构
 \\\\\\\\\\\\</a> 
 \\\\\\\\/div
 (至此新闻发布时间，发布机构已经获取)
@@ -98,7 +98,7 @@ div(class = "main-content w1240")
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<a>
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<em>
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<em>
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<a href="链接" data-sudaclick="comment_sum_p" target="_blank">数量(这个标签内的内容和链接都要)
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\<a href="链接" data-sudaclick="comment_participatesum_p" target="_blank">数量(这个标签内的内容和链接都要)
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<a>
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/<em>
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\/<span>
