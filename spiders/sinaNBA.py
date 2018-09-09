@@ -6,14 +6,23 @@ from  sinaNBASpider.items import SinanbaspiderItem
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 from sinaNBASpider.MyItemLoader import MyItemLoader
-
+import time
 
 class SinanbaSpider(scrapy.Spider):
 	name = "sinaNBA"
 	allowed_domains = ['sports.sina.com.cn/']
 	start_urls = ['http://sports.sina.com.cn/basketball/nba/2018-08-19/doc-ihhxaafy3751096.shtml']
 
+	# def parse(self,response):
+	# 	urls = start_urls
+	# 	for url in urls:
+	# 		request = Request(url=url,callback=self.parse_post,dont_filter=True)
+	# 		request.meta['sinaNBA'] = True
+	# 		yield request
+
+
 	def parse(self,response):
+		time.sleep(3)
 		itemload = MyItemLoader(SinanbaspiderItem(),response=response)
 		itemload.add_value('newsUrl',response.url)
 		# 2、新闻所属分组 这里面包含了四个字段 ,以列表形式返回 
@@ -38,6 +47,7 @@ class SinanbaSpider(scrapy.Spider):
 		itemload.add_xpath('newsPublishOfficaLink','//div[@class="date-source"]/a[@class="source ent-source"]/@href')
 		# SinanbaspiderItem.newsPublishOfficaLink = response.xpath('//span[@class=="date"]/a[class="source ent-source"]/@href').extract()
 	    # 8、标题出现的新闻访问评论数量!!!!!!!!!!!!!!
+# !!!!数字不对	
 		itemload.add_xpath('newsFirstCommentCount','//span[@class="num"]/text()')
 		# SinanbaspiderItem.newsFirstCommentCount = response.xpath('//span[@class=="num"]/text()').extract()
 	    # 9、新闻配图!!!!!!将配图保存到本地，然后将本地地址保存起来,文件保存地址 root+新闻连接中的日期+图片名(即该链接中的最后一部分)
@@ -60,18 +70,23 @@ class SinanbaSpider(scrapy.Spider):
 		itemload.add_xpath('newsKeywordsAndLink','//div[@class="keywords"]/a/@href')
 		# SinanbaspiderItem.newsKeywordsAndLink = response.xpath('//div[@class="keywords",@id=="keywords"]/a/@href').extract()
 	    # 15、新闻评论的数量
+# !!!!未出现	
 		itemload.add_xpath('newsSecondCommentCount','//div[@class="hd clearfix"]/span[@class="count"/em/a]/text()')
 		# SinanbaspiderItem.newsSecondCommentCount = response.xpath('//div[@class="hd clearfix"]/span[@class=="count"/em/a/text()]').extract()[0]
 	    # 16、新闻评论数量对应的链接
+# !!!!未出现
 		itemload.add_xpath('newsSecondCommentCountLink','//div[@class="hd clearfix"]/span[@class="count"/em/a/@href]/text()')
 		# SinanbaspiderItem.newsSecondCommentCountLink = response.xpath('//div[@class="hd clearfix"]/span[@class=="count"/em/a/@href]').extract()[0]
 	    # 17、新闻评论参与人数
+# !!!!未出现	
 		itemload.add_xpath('newsSecondCommentPeopleCount','//div[@class="hd clearfix"]/span[@class="count"/em/a]/text()')
 		# SinanbaspiderItem.newsSecondCommentPeopleCount = response.xpath('//div[@class="hd clearfix"]/span[@class=="count"/em/a/text()]').extract()[1]
 	    # 18、新闻评论参与人数对应链接
+# !!!!未出现	
 		itemload.add_xpath('newsSecondCommentPeopleCountLink','//div[@class="hd clearfix"]/span[@class="count"/em/a/@href]/text()')
 		# SinanbaspiderItem.newsSecondCommentPeopleCountLink = response.xpath('//div[@class="hd clearfix"]/span[@class=="count"/em/a/@href]').extract()[1]
 	    # 19、与本新闻相关的所有评论所在的链接
+# !!!!未出现	
 		itemload.add_xpath('newsAllCommentsLink','//div[@class="list-ft"]/a[class="more"]/@href')
 		# SinanbaspiderItem.newsAllCommentsLink = response.xpath('//div[@class=="list-ft"]/a[class=="more"]/@href').extract()
 		s = itemload.load_item()
