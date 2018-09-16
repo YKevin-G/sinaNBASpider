@@ -54,7 +54,7 @@ ROBOTSTXT_OBEY = True
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    # 'sinaNBASpider.middlewares.SinanbaspiderDownloaderMiddleware': 543,
-   'sinaNBASpider.middle.myMiddleware.PhantomJSMiddleware': 543,
+   'sinaNBASpider.meddle.myMiddleware.PhantomJSMiddleware': 543,
 }
 
 # Enable or disable extensions
