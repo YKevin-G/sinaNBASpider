@@ -54,7 +54,7 @@ ROBOTSTXT_OBEY = True
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    # 'sinaNBASpider.middlewares.SinanbaspiderDownloaderMiddleware': 543,
-   'sinaNBASpider.meddle.myMiddleware.PhantomJSMiddleware': 543,
+   'sinaNBASpider.meddle.myMiddleware.PhantomJSMiddleware': 200,
 }
 
 # Enable or disable extensions
@@ -65,9 +65,13 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'sinaNBASpider.pipelines.SinanbaspiderPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'sinaNBASpider.pipelines.SinanbaspiderPipeline': 301,
+}
+MONGODB_HOST = '127.0.0.1'
+MONGODB_PORT = 27017
+MONGODB_DBNAME = 'sinaNBA'
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

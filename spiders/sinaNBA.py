@@ -90,7 +90,8 @@ class SinanbaSpider(scrapy.Spider):
 		itemload.add_xpath('newsAllCommentsLink','//div[@class="list-ft"]/a[@class="more"]/@href')
 		# SinanbaspiderItem.newsAllCommentsLink = response.xpath('//div[@class=="list-ft"]/a[class=="more"]/@href').extract()
 		s = itemload.load_item()
-		print(s)
+		# yield s
+		# print(s)
 
 
 
