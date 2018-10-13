@@ -1,6 +1,9 @@
 from selenium import webdriver
 from scrapy.http import HtmlResponse
 import time
+import random
+from ..meddle.userAgent import userAgent 
+from ..meddle.ipPool.ip import ip
 
 class PhantomJSMiddleware(object):
 	@classmethod
@@ -18,4 +21,18 @@ class PhantomJSMiddleware(object):
 			content = driver.page_source
 			print('getdata')
 			print('success')
+			# print(request.meta['proxy'])
 			return HtmlResponse(driver.current_url,body=content,encoding='utf-8',request=request)
+
+class UserAgentMiddleware(object):
+	def process_request(self,request,spider):
+		if spider.name == 'sinaNBA':
+			agent = random.choice(userAgent)
+			request.headers['User-Agent'] = agent
+
+class IpProxyMiddleware(object):
+	def process_request(self,request,spider):
+		if spider.name == 'sinaNBA':
+			ipp = random.choice(ip)
+			request.meta['proxy'] = ipp
+			print(request.meta['proxy'])

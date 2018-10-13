@@ -55,6 +55,8 @@ ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {
    # 'sinaNBASpider.middlewares.SinanbaspiderDownloaderMiddleware': 543,
    'sinaNBASpider.meddle.myMiddleware.PhantomJSMiddleware': 543,
+   'sinaNBASpider.meddle.myMiddleware.UserAgentMiddleware':542,
+   'sinaNBASpider.meddle.myMiddleware.IpProxyMiddleware':541
 }
 
 # Enable or disable extensions
