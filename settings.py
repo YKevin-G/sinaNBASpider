@@ -68,12 +68,11 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'sinaNBASpider.pipelines.SinanbaspiderPipeline': 300,
+   'sinaNBASpider.pipelines.SinanbaspiderPipeline': 301,
 }
 MONGODB_HOST = '127.0.0.1'
 MONGODB_PORT = 27017
 MONGODB_DBNAME = 'sinaNBA'
-MONGODB_DOCNAME = 'testData'
 
 
 # Enable and configure the AutoThrottle extension (disabled by default)
